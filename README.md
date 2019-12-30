@@ -5,13 +5,13 @@ This software is provided by [Peregrine Traders B.V.](https://www.peregrinetrade
 
 The Java Market Data Decoder for CME MDP 3.0 was designed as a software application to process end-of-day raw market data captured in the form of PCAP files. The application fully supports the CME MDP 3.0 market data platform (https://www.cmegroup.com/confluence/display/EPICSANDBOX/CME+MDP+3.0+Market+Data), and helps decoding the raw market data messages in a human readable format according to the message schema provided by the exchange, and to store the decoded data in a research and analytics friendly format. 
 
-The application consists of two modules: a reader/decoder module and a writer module. The reader/decoder module reads the raw Simple Binary Encoding (SBE) encoded messages contained in the PCAP files and decodes the messages according to the XML schema provided by the exchange. The writer module generates, given the schema of the single message types defined in the documentation provided by Euronext, a tabular representation of the messages that are then saved in a dedicated Apache Parquet file for each message type, such that each message type receives a dedicated file to be saved on.
+The application consists of two modules: a reader/decoder module and a writer module. The reader/decoder module reads the raw Simple Binary Encoding (SBE) encoded messages contained in the PCAP files and decodes the messages according to the XML schema provided by the exchange. The writer module generates, given the schema of the single message types defined in the documentation provided by CME, a tabular representation of the messages that are then saved in a dedicated Apache Parquet file for each message type, such that each message type receives a dedicated file to be saved on.
 
 
 
 ## Motivation
 
-While the raw SBE encoded messages coming from the CME MDP 3.0 platform constitute the fundamental unit for the delivery of market data information coming from the Euronext exchange, the SBE encoding used for the market data is designed to minimize the latency over a real time feed, but is not a format that is optimized for research and analytics applications. 
+While the raw SBE encoded messages coming from the CME MDP 3.0 platform constitute the fundamental unit for the delivery of market data information coming from the CME exchange, the SBE encoding used for the market data is designed to minimize the latency over a real time feed, but is not a format that is optimized for research and analytics applications. 
 
 Due to the need of having this raw data stored in a research and analytics friendly format, the Java Market Data Decoder for CME MDP 3.0 has been developed. In particular, the application first decodes the raw SBE encoded data using the SBE schema provided by CME, thus converting the data from a binary format to the format characteristic to each data field contained in a specific message. Once a raw message is decoded, the application writes this normalized data to a dedicated Apache Parquet file, which can then be used as a source for analytical queries, or for further processing. 
 
